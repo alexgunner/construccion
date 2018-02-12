@@ -1,0 +1,36 @@
+<div class="user-info">
+  <h1>Por favor ingrese sus datos</h1>
+  <form {{action "confirmReservation" on="submit"}}>
+    <div class="form-group">
+      <label>Nombre</label>
+      {{input type="text" class="form-control" name="firstname" value=first_name placeholder="Ingrese sus nombres" id="nombre"}}
+    </div>
+    <div class="form-group">
+      <label>Apellidos</label>
+      {{input type="text" class="form-control" name="lastname" value=last_name placeholder="Ingrese sus apellidos" id="apellidos"}}
+    </div>
+    <div class="form-group">
+      <label>Teléfono</label>
+      {{input type="number" class="form-control" name="phone" value=phone_number placeholder="Ingrese su teléfono"}}
+    </div>
+    <div class="form-group">
+      <label>Dirección</label>
+      {{input type="text" class="form-control" name="address" value=address placeholder="Ingrese su dirección"}}
+    </div>
+    <div class="form-group">
+      <label>Correo Electrónico</label>
+      {{input type="email" class="form-control" name="email" value=email_address placeholder="Ingrese su correo electronico" id="correo"}}
+    </div>
+    <div class="form-group">
+      <label>NIT</label>
+      {{input type="number" class="form-control" name="nit" value=nit_number placeholder="Ingrese su numero de NIT"}}
+    </div>
+    <div class="form-group">
+      {{input type="submit" value="Confirmar reserva" class="btn btn-success"}}
+    </div>
+  </form>
+  <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    Usa Facebook para que obtengamos tus datos
+  </fb:login-button>
+</div>
+<br>

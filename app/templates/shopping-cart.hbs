@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1>Carrito de compras</h1>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+              <th>ID var</th>
+              <th>Nombre</th>
+              <th>Descripcion</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Precio de la compra</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+          {{#each model.items as |cart_item|}}
+            <tr>
+              <td>{{cart_item.item_variant_id}}</td>
+              <td>{{cart_item.item_name}}</td>
+              <td>{{cart_item.item_description}}</td>
+              <td>{{cart_item.item_quantity}}
+                {{#if (eq cart_item.item_quantity 1)}}
+                  <span class="glyphicon glyphicon-plus" {{action "addQuantity" cart_item}}></span>
+                {{else}}
+                  <span class="glyphicon glyphicon-plus" {{action "addQuantity" cart_item}}></span>
+                  <span class="glyphicon glyphicon-minus" {{action "resQuantity" cart_item}}></span>
+                {{/if}}
+              </td>
+              <td>Bs. {{cart_item.item_sell_price}}</td>
+              <td>Bs. {{multiplication cart_item.item_sell_price cart_item.item_quantity}}</td>
+              <td><button class="btn btn-danger" {{action "deleteFromCart" cart_item}}>Eliminar del carrito</button></td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <h2>Total: Bs. {{suma}}</h2>
+      <button {{action "showUserForm"}} class="btn btn-primary confirm-button">Llenar datos para la reserva</button>
+      {{#confirmation-form data=model.items afterConf="afterConfirmation"}}
+      {{/confirmation-form}}
+    </div>
+    <div class="col-lg-4">
+      <h3>¿Ya hiciste una reserva?</h3>
+      <p>
+        Haz clic <a href="http://www.todo-construccion.com/find_reserve/a">aquí</a> para buscar tu reserva con el código de la misma
+      </p>
+      <h3>Métodos de pago</h3>
+      <p>
+        {{model.payments.description}}
+      </p>
+      <h3>¿Dónde realizar el depósito?</h3>
+      {{#each model.banks as |bank|}}
+        <strong>Banco:</strong> {{bank.bank_name}}<br>
+        <strong>Cuenta:</strong> {{bank.account_number}}
+        <hr class="divider">
+      {{/each}}
+    </div>
+  </div>
+</div>

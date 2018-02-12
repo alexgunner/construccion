@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-lg-4">
+    <h3>Producto: </h3>{{title}}
+    <p><h3>Descripcion</h3>{{description}}</p>
+    <p><h3>Precio</h3>Bs. {{price}}</p>
+    {{#if isImageShowing}}
+      <img src="/assets/images/pruebas/mangueras.jpg" class="img-responsive">
+      <button {{action "hideImage"}}>Ocultar imagen</button>
+    {{else}}
+      <button {{action "showImage"}}>Mostrar imagen</button>
+    {{/if}}
+  </div>
+</div>
+{{yield}}

@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>Su reserva fue guardada correctamente</h1>
+  <p>
+    Como desea confirmar su reservar?
+  </p>
+
+  <button class="btn btn-primary" {{action "showDepositForm"}}>Foto de deposito bancario</button>
+  <button class="btn btn-primary" {{action "showMobileForm"}}>Ingresar mi telefono</button>
+
+
+
+  <form class="mobile-form" {{action "mobileConfirmation" on="submit"}}>
+    <div class="form-group">
+      <label>Ingrese su número de teléfono</label>
+      {{input type="text" class="form-control" name="mobile_phone" value=mobile}}
+    </div>
+    <div class="form-group">
+      {{input type="submit" value="Confirmar" class="btn btn-success"}}
+    </div>
+  </form>
+
+  <form class="deposit-form" {{action "depositConfirmation" on="submit"}}>
+    <div class="form-group">
+
+      <label>Subir imagen de deposito bancario</label>
+      {{file-upload reserve=model.id}}
+    </div>
+    <div class="form-group">
+      {{input type="submit" value="Subir Imagen" class="btn btn-success"}}
+    </div>
+  </form>
+
+  <form class="code-form" {{action "codeConfirmation" on="submit"}}>
+    <div class="form-group">
+      <label>Ingrese el codigo que recibio en su telefono</label>
+      {{input type="text" class="form-control" name="code" value=mobile_code}}
+    </div>
+    <div class="form-group">
+      {{input type="submit" value="Ingresar codigo" class="btn btn-success"}}
+    </div>
+  </form>
+
+</div>
+<br>

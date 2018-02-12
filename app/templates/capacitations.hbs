@@ -1,0 +1,132 @@
+<div class="col-sm-3">
+  <div class="left-sidebar">
+    <h2>Catálogo</h2>
+    <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+      {{#search-form afterSearch="afterSearchProduct"}}
+      {{/search-form}}
+      <br />
+      {{#each model.categories as |category|}}
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a href="/category/{{category.id}}">{{category.category_name}}</a>
+              {{#if (gt category.subcategories.length 0)}}
+                <a data-toggle="collapse" data-parent="#accordian" href="#sportswear{{category.id}}">
+                  <span class="pull-right"><i class="fa fa-sort-desc"></i></span>
+                </a>
+              {{/if}}
+
+            </h4>
+          </div>
+          <div id="sportswear{{category.id}}" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ul>
+                {{#each category.subcategories as |subcategory|}}
+                  <li><a href="/subcategory/{{subcategory.id}}">{{subcategory.subcategory_name}}</a></li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div><!--/category-products-->
+
+    <div class=""><!--shipping-->
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          {{#each model.publicities as |publicity index|}}
+            {{#if (eq index 0)}}
+              <div class="item active">
+                <img src="http://192.241.176.123/{{publicity.slide_picture}}" class="img-responsive img-move" />
+              </div>
+            {{else}}
+              <div class="item">
+                <img src="http://192.241.176.123/{{publicity.slide_picture}}" class="img-responsive img-move" />
+              </div>
+            {{/if}}
+          {{/each}}
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div><!--/shipping-->
+
+    <br />
+
+    <div class="brands_products"><!--brands_products-->
+      <h2>Fabricantes</h2>
+      <div class="brands-name">
+          <ul class="nav nav-pills nav-stacked">
+            {{#each model.manufacturers as |manufacturer|}}
+              <li>
+                <a href="http://{{manufacturer.manu_url}}" target="_blank">
+                  <center>
+                    <img src="http://192.241.176.123/{{manufacturer.manufacturer_logo}}">
+                  </center>
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+      </div>
+    </div><!--/brands_products-->
+  </div>
+</div>
+
+<div class="col-sm-9">
+  <h1 class="title">Capacitaciones</h1>
+
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>
+              Titulo
+            </th>
+            <th>
+              Descripcion
+            </th>
+            <th>
+              Video
+            </th>
+            <th>
+              Archivo
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model.capacitations as |capacitation|}}
+            <tr>
+              <td>
+                {{capacitation.title}}
+              </td>
+              <td>
+                {{capacitation.description}}
+              </td>
+              <td>
+                {{#if (eq capacitation.video_link "")}}
+                  -
+                {{else}}
+                  <a href="{{capacitation.video_link}}" target="_blank">Ver</a>
+                {{/if}}
+              </td>
+              <td>
+                {{#if (eq capacitation.capacitation_pdf "/capacitation_pdfs/original/missing.png")}}
+                  -
+                {{else}}
+                  <a href="http://192.241.176.123/{{capacitation.capacitation_pdf}}" target="_blank">Ver</a>
+                {{/if}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+
+</div>
